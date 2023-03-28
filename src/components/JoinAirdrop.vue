@@ -5,6 +5,7 @@ import { ethers } from "ethers";
 import { onMounted, reactive, ref } from "vue";
 import { StandardMerkleTree } from "@openzeppelin/merkle-tree";
 import Spinner from "./Spinner.vue";
+import router from "@/plugins/router";
 
 const { connect } = useWallet();
 
@@ -101,6 +102,8 @@ async function apply() {
       >
         Apply airdrop
       </button>
+
+      <a class="mt-6 block text-blue-500 hover:text-blue-600 cursor-pointer" @click="router.push('/claim')">Go to claims</a>
 
       <spinner class="w-6 h-6" v-if="isInProcess" />
     </div>
