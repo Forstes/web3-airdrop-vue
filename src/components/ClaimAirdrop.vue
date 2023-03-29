@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import rpsAbi from "@/abi/merkledrop.json";
-import { useWallet } from "@/scripts/wallet";
 import { ethers } from "ethers";
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, ref } from "vue";
 import Spinner from "./Spinner.vue";
+import { useWallet } from "@/scripts/wallet";
+import contractAbi from "@/abi/merkledrop.json";
 
 const { connect } = useWallet();
 
 onMounted(() => {
   connect()
     .then((signer) => {
-      contract = new ethers.Contract(contractAddress, rpsAbi, signer);
+      contract = new ethers.Contract(contractAddress, contractAbi, signer);
     })
     .catch((e) => alert(e));
 });
 
 // Proof 0xd0162b3414035e4a7ba23ff9fd31427dc1eef95bd0969c73dcb40a42c32ea4e6
-const contractAddress = "0x842E63D47E59F18515a720A927d6CaD10835F445";
+const contractAddress = import.meta.env.VITE_CONTRACT_ADDRESS;
 let contract: any;
 
 const isInProcess = ref(false);
@@ -32,7 +32,7 @@ async function claim() {
     alert(`Completed, transaction hash: ${tx.hash}`);
   } catch(e) {
     console.log(e)
-    alert("Failed to claim reward, check if you proof and amount is correct")
+    alert("Failed to claim reward, check if your proof and amount is correct")
   }
 
   isInProcess.value = false;

@@ -24,7 +24,7 @@ function copyAddress() {
 
         <div class="w-auto flex items-center gap-3 cursor-pointer">
           <ClipboardIcon class="w-7 h-7 p-1 text-white border rounded-md active:border-2 hover:bg-gray-700" @click="copyAddress" />
-          <span class="truncate text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-600">{{ address || '...' }}</span>
+          <span class="truncate text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-600">{{ address || "..." }}</span>
         </div>
       </div>
     </nav>
@@ -34,3 +34,28 @@ function copyAddress() {
     </main>
   </div>
 </template>
+
+<style>
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #ffffff #000000;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+}
+</style>
